@@ -4,6 +4,13 @@ import PyQt5.QtGui as qtg
 class MainWindow(qtw.QWidget):
     def __init__(self):
         super().__init__()
+        def press_it():
+            ''' For my_entry entry box
+            my_label.setText(f'Hello {my_entry.text()}') # Create a text
+            my_entry.setText("")'''
+            my_label.setText(f'Your Choice is {my_combo.currentText()}')  # for combo box 
+            '''my_label.setText(f'Your Choice is {my_spin.value()}')  # for spin box.'''
+            '''my_label.setText(f'Your Choice is {my_text.toPlainText()}')'''
         self.setWindowTitle("Hi app") # Creating a title name.
         self.setLayout(qtw.QVBoxLayout()) #Creating a vertical box layout.
         my_label = qtw.QLabel("Hellow world") # Creating a label .
@@ -17,7 +24,7 @@ class MainWindow(qtw.QWidget):
         
         #Create a combo box
         my_combo = qtw.QComboBox(self,editable = True,insertPolicy = qtw.QComboBox.InsertAtTop)
-        my_combo.mousePressEvent()
+        #my_combo.mousePressEvent()
         my_combo.addItem("Halstead")
         my_combo.addItem("Anderson")
         my_combo.addItem("Powell")
@@ -27,6 +34,7 @@ class MainWindow(qtw.QWidget):
         my_combo.insertItem(5,"Joshua") # inset one item inbetween.
         my_combo.insertItems(6,["Joana","Maggie","Immu"])
         self.layout().addWidget(my_combo)
+        my_combo.activated.connect(press_it)
         
         '''
         #Create a spin box which is numeric control as in labview.
@@ -41,13 +49,7 @@ class MainWindow(qtw.QWidget):
         my_button = qtw.QPushButton("Press Me!",clicked = lambda: press_it())
         self.layout().addWidget(my_button)
         self.show()# To show the app
-        def press_it():
-            ''' For my_entry entry box
-            my_label.setText(f'Hello {my_entry.text()}') # Create a text
-            my_entry.setText("")'''
-            my_label.setText(f'Your Choice is {my_combo.currentText()}')  # for combo box 
-            '''my_label.setText(f'Your Choice is {my_spin.value()}')  # for spin box.'''
-            '''my_label.setText(f'Your Choice is {my_text.toPlainText()}')'''
+        
             
         
 app = qtw.QApplication([])
